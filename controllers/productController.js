@@ -7,13 +7,13 @@ const cloudinary = require("cloudinary");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
-
+  console.log('11111111111111111111');
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
     images = req.body.images;
   }
-
+  console.log('222222222222222222');
   const imagesLinks = [];
 
   for (let i = 0; i < images.length; i++) {
@@ -26,10 +26,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
       url: result.secure_url,
     });
   }
-
+  console.log('333333333333333333333');
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
-
+console.log('dsgfjdsgfjdsgfdsgfjdsgfdsh');
   const product = await Product.create(req.body);
 
   res.status(201).json({
